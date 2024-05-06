@@ -31,3 +31,25 @@ class SessionController:
         return (200, {
             "id": result.id
         })
+    
+    @RequestUtils.api_response
+    def patch_session(self, session_id: str, data: str, payload: dict) -> Tuple[int, dict]:
+        session: SessionModel = self.session_repo.retrieve(session_id)
+        if data == "language":
+            session.language = payload.get('language')
+        elif data == "contact_details":
+            session.first_name = payload.get('first_name')
+            session.last_name = payload.get('last_name')
+            session.phone_number = payload.get('phone_number')
+            # TODO: Save the +94 version of the phone number
+        else:
+            return (400, {
+                "error": f"Unknown data requested for PATCH: {data}"
+            })  
+
+        model: SessionController = self.session_repo.update(session)
+        if model == None: return (404, {'error': 'Could not update session'})
+
+        return (200, {
+            "id": session.to_dto()
+        })

@@ -6,9 +6,9 @@
       "type": "httpTrigger",
       "direction": "in",
       "name": "req",
-      "route": "session",
+      "route": "session/{session_id?}",
       "methods": [
-        "post"
+        "post", "patch"
       ]
     },
     {
