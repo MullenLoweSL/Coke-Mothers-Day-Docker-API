@@ -17,5 +17,7 @@ class SunoService(metaclass=Singleton):
             "title": title
         }
         response = requests.request("POST", self.custom_generate_url, headers=headers, data=json.dumps(payload))
-        return response.json()
+        response_json = response.json()
+        # response JSON always has 2 entries, take 1st one (arbitrarily)
+        return response_json[0]['id']
 
