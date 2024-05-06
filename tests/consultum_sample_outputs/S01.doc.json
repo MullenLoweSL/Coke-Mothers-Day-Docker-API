@@ -1,0 +1,534 @@
+{
+  "request_id": "90266419-f8b0-4531-bd04-d7f9bf6ae890",
+  "success": true,
+  "error": null,
+  "data": {
+    "seekingAdvicePurpose": "Review the existing super platform.",
+    "objectives": [
+      {
+        "priority": "Not Recorded",
+        "description": "Maintain a cash reserve",
+        "date": "June 2021",
+        "amount": "$5,000",
+        "title": {
+          "description": "Cash Reserve",
+          "date": "June 2021",
+          "amount": "Not Recorded"
+        }
+      }
+    ],
+    "futureSituationChange": "",
+    "personalProfile": {
+      "personalDetails": [
+        {
+          "client": "Client 1",
+          "title": "Miss",
+          "surname": "Test",
+          "givenName": "Holly",
+          "preferredName": "Holly",
+          "sex": "Female",
+          "dateofbirth": "2 July 1979",
+          "maritalStatus": "Divorced",
+          "agePensionAge": "67",
+          "agePreservationAge": "60"
+        }
+      ],
+      "contactDetails": [
+        {
+          "client": "Client 1",
+          "homeAddress": {
+            "preferred": true,
+            "address": "5 Brookland Green Blvd",
+            "suburb": "CRANBOURNE",
+            "state": "VIC",
+            "postcode": "7986"
+          },
+          "postalAddress": {
+            "preferred": false,
+            "address": "Not Recorded",
+            "suburb": null,
+            "state": null,
+            "postcode": null
+          }
+        }
+      ],
+      "childrenAndDependantDetails": [
+        {
+          "name": "Alicia Test",
+          "relationship": "Daughter",
+          "dateofbirth": "9 February 2009",
+          "age": "12"
+        }
+      ],
+      "healthDetails": [
+        {
+          "client": "Client 1",
+          "isSmoker": "No",
+          "health": "Good"
+        }
+      ],
+      "employmentDetails": [
+        {
+          "client": "Client 1",
+          "jobTitle": "Accountant",
+          "status": "Full-time",
+          "employerName": "Woolsworth",
+          "salary": "$67,900",
+          "occupation": "Accountant - Qualified"
+        }
+      ],
+      "investorProfileDetails": {
+        "agreedRiskProfiles": [
+          {
+            "client": "Client 1",
+            "agreedRiskProfile": "Moderate Growth"
+          }
+        ],
+        "agreedRiskProfilesJoint": ""
+      }
+    },
+    "incomeDetails": [
+      {
+        "owner": "Holly",
+        "type": "Ordinary Wages - Salary",
+        "amount": "$67,900"
+      },
+      {
+        "owner": "Holly",
+        "type": "Investment: Rental - Rental Income",
+        "amount": "$19,708"
+      }
+    ],
+    "expenditureDetails": [
+      {
+        "owner": "Holly",
+        "type": "Insurance Premium - TAL Accelerated Protection 725234",
+        "amount": "$1,987"
+      },
+      {
+        "owner": "Holly",
+        "type": "Living Expenses - Living Expenses",
+        "amount": "$39,750"
+      },
+      {
+        "owner": "Holly",
+        "type": "Tax-Deductible Mortgage Payments - ANZ",
+        "amount": "$120,000"
+      },
+      {
+        "owner": "Holly",
+        "type": "Mortgage Payments - S loan",
+        "amount": "$6,840"
+      }
+    ],
+    "lifestyleDetails": [
+      {
+        "description": "Home",
+        "owner": "Holly",
+        "type": "Real Estate",
+        "currentValue": "$475,000"
+      },
+      {
+        "description": "Investment Property - Widebay",
+        "owner": "Holly",
+        "type": "Real Estate",
+        "currentValue": "Not Recorded"
+      },
+      {
+        "description": "Home Contents",
+        "owner": "Holly",
+        "type": "Life Style",
+        "currentValue": "$13,000"
+      },
+      {
+        "description": "ANZ Term Deposit",
+        "owner": "Holly",
+        "type": "Liquid Assets",
+        "currentValue": "$150,000"
+      },
+      {
+        "description": "CBA Bank Account",
+        "owner": "Holly",
+        "type": "Liquid Assets",
+        "currentValue": "$28,950"
+      }
+    ],
+    "liabilitiesDetails": [
+      {
+        "owner": "Holly",
+        "description": "Investment Property Mortgage\n- ANZ",
+        "liabilityType": "Deductible",
+        "outstandingBalance": "$350,000",
+        "principalAndInterest": "Principal & Interest",
+        "deductiblePercentage": "100%",
+        "repaymentAmount": "$10,000.00\n(Monthly)",
+        "interestRate": "0.40%\n(Fixed)"
+      },
+      {
+        "owner": "Holly",
+        "description": "Primary Residence Mortgage\n- S loan",
+        "liabilityType": "Non-Deductible",
+        "outstandingBalance": "$79,000",
+        "principalAndInterest": "Principal & Interest",
+        "deductiblePercentage": "n/a",
+        "repaymentAmount": "$570.00\n(Monthly)",
+        "interestRate": "3.50%\n(Fixed)"
+      }
+    ],
+    "estateDetails": [
+      {
+        "client": "Client 1",
+        "haveWill": "Yes",
+        "dateOfWill": "1 June 2021 (last reviewed 1 June 2021)",
+        "powerOfAttorney": "Yes - Enduring (Sahani Wijekoon)",
+        "testamentaryTrust": "xxx",
+        "enduringGuardianAppointed": "xxx",
+        "funeralPlan": "Not Recorded",
+        "deathBenefit": "IOOF Pursuit Select Personal Super - Consultum (as of 1 July 2018)",
+        "deathBenefitOwner": "Holly",
+        "deathBenefitType": "Non-Binding",
+        "dateOfExpiry": "30 Jun 2021"
+      }
+    ],
+    "privateHealthInsurance": [],
+    "generalInsurance": [],
+    "personalRiskInsurance": {
+      "personalRiskInsuranceDetails": [
+        {
+          "section": "Life",
+          "data": [
+            {
+              "policyNo": "TAL 725234",
+              "lifeAmount": "Holly $175,000",
+              "type": "Super-linked TPD",
+              "renewalDate": "9 Aug.",
+              "issueStatus": "Inforce",
+              "standAlone": "n/a",
+              "buyBack": "n/a",
+              "reinstatement": "n/a",
+              "waitingPeriod": "n/a",
+              "benefitPeriod": "n/a",
+              "viaSuper": "Yes",
+              "annualPremium": "$1,986.88 (Stepped)"
+            }
+          ]
+        },
+        {
+          "section": "TPD",
+          "data": [
+            {
+              "policyNo": "TAL 725234",
+              "lifeAmount": "Holly $175,000",
+              "type": "Any Occupation",
+              "renewalDate": "9 Aug.",
+              "issueStatus": "Loading",
+              "standAlone": "No",
+              "buyBack": "No",
+              "reinstatement": "n/a",
+              "waitingPeriod": "4 weeks",
+              "benefitPeriod": "n/a",
+              "viaSuper": "Yes",
+              "annualPremium": "$1,986.88 (Stepped)"
+            }
+          ]
+        },
+        {
+          "section": "Trauma",
+          "data": [
+            {
+              "policyNo": "TAL 725234",
+              "lifeAmount": "Holly $100,000",
+              "type": "Flexi-linked to Super",
+              "renewalDate": "9 Aug.",
+              "issueStatus": "Loading & Exclusion",
+              "standAlone": "Yes",
+              "buyBack": "Yes",
+              "reinstatement": "Yes",
+              "waitingPeriod": "n/a",
+              "benefitPeriod": "n/a",
+              "viaSuper": "n/a",
+              "annualPremium": "$1,986.88 (Stepped)"
+            }
+          ]
+        },
+        {
+          "section": "Income Protection",
+          "data": [
+            {
+              "policyNo": "TAL 725234",
+              "lifeAmount": "Holly $5,000 p/m",
+              "type": "Comprehensive\n(Indemnity)",
+              "renewalDate": "9 Aug.",
+              "issueStatus": "Loading & Exclusion",
+              "standAlone": "n/a",
+              "buyBack": "n/a",
+              "reinstatement": "n/a",
+              "waitingPeriod": "30 days",
+              "benefitPeriod": "A - Age 65",
+              "viaSuper": "",
+              "annualPremium": "$1,986.88 (Stepped)"
+            }
+          ]
+        }
+      ],
+      "personalRiskInsuranceCover": [
+        {
+          "policyNumber": "725234",
+          "underwriter": "TAL",
+          "policyName": "TAL Accelerated Protection",
+          "life": "$175,000",
+          "tpd": "$175,000",
+          "trauma": "-",
+          "incomeProtection": "-",
+          "businessExpense": "-",
+          "owner": "Holly"
+        }
+      ]
+    },
+    "centrelink": {
+      "benefitsGained": {
+        "client1": "Not Recorded"
+      },
+      "gifting": ""
+    },
+    "scopeOfAdvice": [
+      {
+        "adviceArea": "Insurance (both inside and outside Super – where applicable)",
+        "scope": "NotRelevant",
+        "explanation": ""
+      },
+      {
+        "adviceArea": "Superannuation",
+        "scope": "RelevantInScope",
+        "explanation": ""
+      },
+      {
+        "adviceArea": "Retirement income",
+        "scope": "NotRelevant",
+        "explanation": ""
+      },
+      {
+        "adviceArea": "Estate planning",
+        "scope": "NotRelevant",
+        "explanation": ""
+      },
+      {
+        "adviceArea": "Investment",
+        "scope": "NotRelevant",
+        "explanation": ""
+      },
+      {
+        "adviceArea": "Cash flow management",
+        "scope": "NotRelevant",
+        "explanation": ""
+      },
+      {
+        "adviceArea": "Aged care",
+        "scope": "NotRelevant",
+        "explanation": ""
+      },
+      {
+        "adviceArea": "Social Security",
+        "scope": "NotRelevant",
+        "explanation": ""
+      },
+      {
+        "adviceArea": "Debt management",
+        "scope": "NotRelevant",
+        "explanation": ""
+      }
+    ],
+    "scopeOfAdviceDetails": [
+      {
+        "adviceArea": "Insurance",
+        "subAreas": [
+          {
+            "subAdviceArea": "Life",
+            "inOut": null,
+            "explanation": ""
+          },
+          {
+            "subAdviceArea": "TPD",
+            "inOut": null,
+            "explanation": ""
+          },
+          {
+            "subAdviceArea": "Income protection",
+            "inOut": null,
+            "explanation": ""
+          },
+          {
+            "subAdviceArea": "Trauma",
+            "inOut": null,
+            "explanation": ""
+          },
+          {
+            "subAdviceArea": "Business insurance",
+            "inOut": null,
+            "explanation": ""
+          }
+        ]
+      },
+      {
+        "adviceArea": "Superannuation",
+        "subAreas": [
+          {
+            "subAdviceArea": "Contributions",
+            "inOut": "Out",
+            "explanation": "You are happy with your current level of contributions."
+          },
+          {
+            "subAdviceArea": "Platform review",
+            "inOut": "In",
+            "explanation": "You would like to review the possibility of moving into another platform. However, you are happy to retain your existing platform - even if other options may be expensive, at this stage."
+          },
+          {
+            "subAdviceArea": "Portfolio review",
+            "inOut": "In",
+            "explanation": "No limitations"
+          },
+          {
+            "subAdviceArea": "SMSF",
+            "inOut": "Out",
+            "explanation": "You have no requirement to have an SMSF at this stage."
+          }
+        ]
+      },
+      {
+        "adviceArea": "Retirement income",
+        "subAreas": [
+          {
+            "subAdviceArea": "Income streams",
+            "inOut": null,
+            "explanation": ""
+          },
+          {
+            "subAdviceArea": "Platform review",
+            "inOut": null,
+            "explanation": ""
+          },
+          {
+            "subAdviceArea": "Portfolio review",
+            "inOut": null,
+            "explanation": ""
+          },
+          {
+            "subAdviceArea": "Withdrawals",
+            "inOut": null,
+            "explanation": ""
+          }
+        ]
+      },
+      {
+        "adviceArea": "Estate planning",
+        "subAreas": [
+          {
+            "subAdviceArea": "Super death benefit nominations",
+            "inOut": null,
+            "explanation": ""
+          },
+          {
+            "subAdviceArea": "Insurance nominations",
+            "inOut": null,
+            "explanation": ""
+          },
+          {
+            "subAdviceArea": "Wills",
+            "inOut": null,
+            "explanation": ""
+          },
+          {
+            "subAdviceArea": "POA/EPOA",
+            "inOut": null,
+            "explanation": ""
+          },
+          {
+            "subAdviceArea": "Other structures (eg testamentary trust)",
+            "inOut": null,
+            "explanation": ""
+          },
+          {
+            "subAdviceArea": "Guardianship/health directives",
+            "inOut": null,
+            "explanation": ""
+          }
+        ]
+      },
+      {
+        "adviceArea": "Investment",
+        "subAreas": [
+          {
+            "subAdviceArea": "Direct shares",
+            "inOut": null,
+            "explanation": ""
+          },
+          {
+            "subAdviceArea": "Platform review",
+            "inOut": null,
+            "explanation": ""
+          },
+          {
+            "subAdviceArea": "Portfolio review",
+            "inOut": null,
+            "explanation": ""
+          }
+        ]
+      },
+      {
+        "adviceArea": "Cash flow management",
+        "subAreas": [
+          {
+            "subAdviceArea": "Budgeting",
+            "inOut": null,
+            "explanation": ""
+          }
+        ]
+      },
+      {
+        "adviceArea": "Aged care",
+        "subAreas": [
+          {
+            "subAdviceArea": "Home care",
+            "inOut": null,
+            "explanation": ""
+          },
+          {
+            "subAdviceArea": "Residential aged care",
+            "inOut": null,
+            "explanation": ""
+          }
+        ]
+      },
+      {
+        "adviceArea": "Social Security",
+        "subAreas": [
+          {
+            "subAdviceArea": "Income support payments (Centrelink/DVA)",
+            "inOut": null,
+            "explanation": ""
+          },
+          {
+            "subAdviceArea": "Concession cards",
+            "inOut": null,
+            "explanation": ""
+          }
+        ]
+      },
+      {
+        "adviceArea": "Debt management",
+        "subAreas": [
+          {
+            "subAdviceArea": "Deductible debt",
+            "inOut": null,
+            "explanation": ""
+          },
+          {
+            "subAdviceArea": "Non-deductible debt",
+            "inOut": null,
+            "explanation": ""
+          }
+        ]
+      }
+    ]
+  }
+}
