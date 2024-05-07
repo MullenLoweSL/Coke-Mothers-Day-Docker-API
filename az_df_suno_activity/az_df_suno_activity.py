@@ -7,7 +7,6 @@ def az_df_suno_activity(job):
     # Simulate checking job status for GenAI Audio
     logging.info(f"Checking job status for suno_song_id: {suno_song_id}")
 
-    # job_status = check_job_status(suno_song_id)
     song_url = SunoService().get_song_URL(suno_song_id)
     if song_url:
         print(f"az_df_suno_activity: Suno song URL: {song_url}")
@@ -17,16 +16,9 @@ def az_df_suno_activity(job):
         job_status = False
         
     if job_status:
-        return "Completed"
+        return "Completed", song_url
     else:
-        return "InProgress"
-
-def check_job_status(suno_song_id):
-    # Mocked logic for job status
-    try:
-        return int(suno_song_id) % 2 == 0
-    except ValueError:
-        return False
+        return "InProgress", None
 
 def main(job: dict) -> str:
     return az_df_suno_activity(job)

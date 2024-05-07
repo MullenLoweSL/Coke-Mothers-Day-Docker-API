@@ -1,4 +1,5 @@
 {
+  "scriptFile": "az_df_suno_orchestrator.py",
   "bindings": [
     {
       "name": "context",

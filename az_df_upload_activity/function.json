@@ -1,0 +1,10 @@
+{
+  "scriptFile": "az_df_upload_activity.py",
+  "bindings": [
+    {
+      "name": "args",
+      "type": "activityTrigger",
+      "direction": "in"
+    }
+  ]
+}

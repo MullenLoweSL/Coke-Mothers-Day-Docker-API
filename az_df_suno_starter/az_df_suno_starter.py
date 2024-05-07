@@ -11,11 +11,12 @@ async def main(req: func.HttpRequest, starter: str):
     # suno_song_id = .... req.get_json().get("suno_song_id")
 
     prompt = "[Verse 1]\nයමන් බණ්ඩො වෙසක් බලන්ඩ\nගනින් බර බාගේ බඳින්ඩ\nපාර දිගේ එළි බල බල\nමහ පාරේ හරි කලබල‍\nයමන් බණ්ඩො වෙසක් බලන්ඩ\n\n[Verse 2]\nයමන් බණ්ඩො වෙසක් බලන්ඩ\nගනින් බර බාගේ බඳින්ඩ\nපාර දිගේ එළි බල බල\nමහ පාරේ හරි කලබල‍\nයමන් බණ්ඩො වෙසක් බලන්ඩ"
-    tag = "Smooth jazz"
+    tag = "Pop"
     title = "Enjoy Life"
     suno_song_id = SunoService().custom_generate(prompt, tag, title)
 
-    # suno_song_id = "835f797a-31b1-4b8d-9aab-7c974dda6acb"
+    session_id = "abc123"
+    # suno_song_id = "11260199-4693-4c53-936d-f9811e109312"
     print(f"Using suno_song_id: {suno_song_id}")
 
     if not suno_song_id:
@@ -28,6 +29,7 @@ async def main(req: func.HttpRequest, starter: str):
     expiry_time = (datetime.utcnow() + timedelta(minutes=5)).isoformat()
 
     job = {
+        "session_id": session_id,
         "suno_song_id": suno_song_id,
         "pollingInterval": polling_interval,
         "expiryTime": expiry_time

@@ -2,7 +2,7 @@
 FactFindScraperFunction/*.docx
 FactFindScraperFunction/*.json
 __azurite*
-__blobstorage/*
+__blobstorage__/*
 __queuestorage__/*
 # libs
 pandas/
