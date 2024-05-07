@@ -25,7 +25,7 @@ class SessionModel(BaseModel):
         self.phone_number = kwargs.get('phone_number', None)
         self.song_uploaded = kwargs.get('song_uploaded', False)
         self.video_uploaded = kwargs.get('video_uploaded', False)
-        if 'typeform_response' in kwargs:
+        if kwargs.get('typeform_response'):
             self.typeform_response = TypeformModel(**kwargs.get('typeform_response'))
         else:
             self.typeform_response = None

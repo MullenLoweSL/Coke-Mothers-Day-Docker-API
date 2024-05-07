@@ -37,7 +37,12 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     elif req.method == "PATCH":
         data: str = req.params.get("data")
         session_id: str = req.route_params.get('session_id')
-        req_body = req.get_json()
+        # check is PATCH data is JSON (not always: photo upload, etc.)
+        try:
+            req_body = req.get_json()
+        except ValueError:
+            req_body = None
+        
         return handler.patch_session(session_id, data, req_body)
         
             
