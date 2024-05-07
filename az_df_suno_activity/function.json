@@ -1,4 +1,5 @@
 {
+  "scriptFile": "az_df_suno_activity.py",
   "bindings": [
     {
       "name": "job",

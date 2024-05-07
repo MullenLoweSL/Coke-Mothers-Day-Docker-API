@@ -1,4 +1,5 @@
 {
+  "scriptFile": "az_df_suno_starter.py",
   "bindings": [
     {
       "authLevel": "anonymous",
