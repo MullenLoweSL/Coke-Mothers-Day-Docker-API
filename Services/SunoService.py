@@ -21,3 +21,11 @@ class SunoService(metaclass=Singleton):
         # response JSON always has 2 entries, take 1st one (arbitrarily)
         return response_json[0]['id']
 
+    def get_song_URL(self, suno_song_id):
+        headers = {'Content-Type': 'application/json'}
+        response = requests.request("GET", self.get_info + suno_song_id, headers=headers)
+        response_json = response.json()
+        if response_json[0]['audio_url']:
+            return response_json[0]['audio_url']
+        return None
+

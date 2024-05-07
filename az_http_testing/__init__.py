@@ -17,5 +17,5 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     mp3_path = "/Users/sohan/Desktop/Coke/test/sample.mp3"
     png_path = "/Users/sohan/Desktop/Coke/test/cover.png"
     output_path = "/Users/sohan/Desktop/Coke/test/output.mp4"
-    result = ffmpegService().generate_mp4(mp3_path, png_path, output_path)
+    _ = ffmpegService().generate_mp4(mp3_path, png_path, output_path)
     return func.HttpResponse(json.dumps({"output_path": output_path}), status_code=200, mimetype="application/json")
