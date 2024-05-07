@@ -12,6 +12,7 @@ class SessionModel(BaseModel):
     last_name: str = None
     phone_number: str = None
     song_uploaded: bool = False
+    video_uploaded: bool = False
 
     def __init__(self, **kwargs):
         self.id = kwargs.get('id', None)
@@ -21,6 +22,7 @@ class SessionModel(BaseModel):
         self.last_name = kwargs.get('last_name', None)
         self.phone_number = kwargs.get('phone_number', None)
         self.song_uploaded = kwargs.get('song_uploaded', False)
+        self.video_uploaded = kwargs.get('video_uploaded', False)
     
     def to_dto(self):
         # return the object as a dictionary
@@ -31,5 +33,6 @@ class SessionModel(BaseModel):
             "first_name": self.first_name,
             "last_name": self.last_name,
             "phone_number": self.phone_number,
-            "song_uploaded": self.song_uploaded
+            "song_uploaded": self.song_uploaded,
+            "video_uploaded": self.video_uploaded
         }

@@ -1,0 +1,10 @@
+{
+  "scriptFile": "az_df_ffmpeg_start.py",
+  "bindings": [
+    {
+      "name": "job",
+      "type": "activityTrigger",
+      "direction": "in"
+    }
+  ]
+}
