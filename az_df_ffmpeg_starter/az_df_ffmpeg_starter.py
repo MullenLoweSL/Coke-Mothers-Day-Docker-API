@@ -16,7 +16,7 @@ async def main(req: func.HttpRequest, starter: str):
 
     # Define the polling interval and expiry time
     polling_interval = 3  # seconds
-    expiry_time = (datetime.utcnow() + timedelta(hours=2)).isoformat()
+    expiry_time = (datetime.utcnow() + timedelta(minutes=5)).isoformat()
 
     # Start the ffmpeg orchestrator
     job = {
