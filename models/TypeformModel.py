@@ -7,14 +7,16 @@ class TypeformModel(BaseModel):
     session_id: str = None
     mothers_name: str = None
     mothers_food: str = None
-    mothers_lifestyle: str = None
+    mothers_personality: str = None
+    mothers_fun: str = None
     mothers_music: str = None
 
     def __init__(self, **kwargs):
         self.session_id = kwargs.get('session_id', None)
         self.mothers_name = kwargs.get('mothers_name', None)
         self.mothers_food = kwargs.get('mothers_food', None)
-        self.mothers_lifestyle = kwargs.get('mothers_lifestyle', None)
+        self.mothers_personality = kwargs.get('mothers_personality', None)
+        self.mothers_fun = kwargs.get('mothers_fun', None)
         self.mothers_music = kwargs.get('mothers_music', None)
     
     def to_dto(self):
@@ -23,6 +25,7 @@ class TypeformModel(BaseModel):
             "session_id": self.session_id,
             "mothers_name": self.mothers_name,
             "mothers_food": self.mothers_food,
-            "mothers_lifestyle": self.mothers_lifestyle,
+            "mothers_personality": self.mothers_personality,
+            "mothers_fun": self.mothers_fun,
             "mothers_music": self.mothers_music
         }

@@ -7,6 +7,7 @@ class SunoService(metaclass=Singleton):
 
     def __init__(self):
         self.custom_generate_url = os.environ["SUNO_API"] + "/custom_generate"
+        self.ai_generate_url = os.environ["SUNO_API"] + "/generate"
         self.get_info = os.environ["SUNO_API"] + "/get?ids="
 
     def custom_generate(self, prompt, tag, title):
@@ -17,6 +18,18 @@ class SunoService(metaclass=Singleton):
             "title": title
         }
         response = requests.request("POST", self.custom_generate_url, headers=headers, data=json.dumps(payload))
+        response_json = response.json()
+        # response JSON always has 2 entries, take 1st one (arbitrarily)
+        return response_json[0]['id']
+
+    def ai_generate(self, prompt):
+        headers = {'Content-Type': 'application/json'}
+        payload = {
+            "prompt": prompt,
+            "make_instrumental": False,
+            "wait_audio": False
+        }
+        response = requests.request("POST", self.ai_generate_url, headers=headers, data=json.dumps(payload))
         response_json = response.json()
         # response JSON always has 2 entries, take 1st one (arbitrarily)
         return response_json[0]['id']

@@ -1,3 +1,4 @@
+import random
 import azure.functions as func
 import azure.durable_functions as df
 import logging
@@ -22,10 +23,27 @@ async def main(req: func.HttpRequest, starter: str):
 
     # TODO: Call SunoService with payload params to generate actual suno song ID
     # suno_song_id = .... req.get_json().get("suno_song_id")
-    prompt = "[Verse 1]\nයමන් බණ්ඩො වෙසක් බලන්ඩ\nගනින් බර බාගේ බඳින්ඩ\nපාර දිගේ එළි බල බල\nමහ පාරේ හරි කලබල‍\nයමන් බණ්ඩො වෙසක් බලන්ඩ\n\n[Verse 2]\nයමන් බණ්ඩො වෙසක් බලන්ඩ\nගනින් බර බාගේ බඳින්ඩ\nපාර දිගේ එළි බල බල\nමහ පාරේ හරි කලබල‍\nයමන් බණ්ඩො වෙසක් බලන්ඩ"
-    tag = "Pop"
-    title = "Enjoy Life"
-    suno_song_id = SunoService().custom_generate(prompt, tag, title)
+
+    # ------------------------------------------------------------------
+    # ------------------------------------------------------------------
+    # ------------------------------------------------------------------
+    # # CUSTOM LYRICS
+    # prompt = "[Verse 1]\nයමන් බණ්ඩො වෙසක් බලන්ඩ\nගනින් බර බාගේ බඳින්ඩ\nපාර දිගේ එළි බල බල\nමහ පාරේ හරි කලබල‍\nයමන් බණ්ඩො වෙසක් බලන්ඩ\n\n[Verse 2]\nයමන් බණ්ඩො වෙසක් බලන්ඩ\nගනින් බර බාගේ බඳින්ඩ\nපාර දිගේ එළි බල බල\nමහ පාරේ හරි කලබල‍\nයමන් බණ්ඩො වෙසක් බලන්ඩ"
+    # tag = "Pop"
+    # title = "Enjoy Life"
+    # suno_song_id = SunoService().custom_generate(prompt, tag, title)
+    # ------------------------------------------------------------------
+    # ------------------------------------------------------------------
+    # ------------------------------------------------------------------
+    # AI LYRICS    
+    if typeform.mothers_music == "Surprise me!":
+        styles = ["opera", "rap", "K-pop"]
+        style = random.choice(styles)
+    else:
+        style = typeform.mothers_music
+
+    prompt = f"A mother's day song for my mother who's name is '{typeform.mothers_name}'. Mention her favourite food {typeform.mothers_food}, her {typeform.mothers_personality} personality and her favourite pasttime {typeform.mothers_fun}. In {style} style"
+    suno_song_id = SunoService().ai_generate(prompt)
 
     # session_id = "abc123"
     # suno_song_id = "11260199-4693-4c53-936d-f9811e109312"
