@@ -6,6 +6,7 @@ import subprocess
 from services.BlobService import BlobService
 
 def az_df_ffmpeg_start(job):
+    return True
     session_id = job["session_id"]
 
     # Start the ffmpeg job (Mock)
@@ -19,6 +20,40 @@ def az_df_ffmpeg_start(job):
     # Download the files
     song_response = requests.get(song_url)
     image_response = requests.get(image_url)
+
+    # # Write the files to temporary storage
+    # with tempfile.NamedTemporaryFile(suffix=".mp3", delete=False) as song_file, \
+    #     tempfile.NamedTemporaryFile(suffix=".png", delete=False) as image_file, \
+    #     tempfile.NamedTemporaryFile(suffix=".mp4", delete=False) as output_file:
+
+    #     song_file.write(song_response.content)
+    #     image_file.write(image_response.content)
+
+    #     song_path = song_file.name
+    #     image_path = image_file.name
+    #     output_path = output_file.name
+
+    #     # Run the ffmpeg -i operation
+    #     command = [
+    #         "ffmpeg", "-i", song_path, "-framerate", "1", "-i", image_path, "-c:v", "libx264", 
+    #         "-preset", "veryslow", "-tune", "stillimage", "-crf", "18", "-pix_fmt", "yuv420p", 
+    #         "-vf", "scale=300:300", "-c:a", "aac", "-b:a", "192k", "-shortest", "-movflags", 
+    #         "+faststart", output_path
+    #     ]
+
+    #     process = subprocess.Popen(command)
+
+    #     # Wait for the subprocess to finish
+    #     process.wait()
+
+    #     # Print the return code of the ffmpeg command
+    #     print("returncode:", process.returncode)
+
+        # -------------------------------------------
+        # -------------------------------------------
+        # -------------------------------------------
+        # -------------------------------------------
+        # -------------------------------------------
 
     # Write the files to temporary storage
     with tempfile.NamedTemporaryFile(suffix=".mp3", delete=False) as song_file:
@@ -40,6 +75,9 @@ def az_df_ffmpeg_start(job):
     with tempfile.NamedTemporaryFile(suffix=".mp4", delete=False) as output_file:
         output_path = output_file.name
 
+    # Create a regular file for the output
+    output_path = "/Users/sohan/Desktop/Coke/script-albumArt-ffmpeg/file.mp4"
+
     # Run the ffmpeg -i operation
     command = [
         "ffmpeg", "-i", song_path, "-framerate", "1", "-i", image_path, "-c:v", "libx264", 
@@ -47,9 +85,16 @@ def az_df_ffmpeg_start(job):
         "-vf", "scale=300:300", "-c:a", "aac", "-b:a", "192k", "-shortest", "-movflags", 
         "+faststart", output_path
     ]
-    subprocess.run(command, check=True)
-    
-    # subprocess.run(["ffmpeg", "-i", song_path, "-i", image_path, "-o", output_path])
+
+    process = subprocess.Popen(command)
+
+    # Wait for the subprocess to finish
+    process.wait()
+
+    # Print the return code of the ffmpeg command
+    print("returncode:", process.returncode)
+
+    subprocess.run(["ffmpeg", "-i", song_path, "-i", image_path, "-o", output_path])
 
     # Open the output file in binary mode and upload it to blob storage
     branded_blob_path = session_id + "/song.mp4"

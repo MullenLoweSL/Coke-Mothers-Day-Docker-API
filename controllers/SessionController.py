@@ -52,6 +52,10 @@ class SessionController:
             "result": session.to_dto()
         })
     
+    def is_session_completed(self, session_id: str) -> bool:
+        session: SessionModel = self.session_repo.retrieve(session_id)
+        return session.song_uploaded and session.video_uploaded
+    
     def mark_song_uploaded_session(self, session_id: str) -> bool:
         session: SessionModel = self.session_repo.retrieve(session_id)
         session.song_uploaded = True

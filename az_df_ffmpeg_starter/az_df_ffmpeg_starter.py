@@ -6,6 +6,7 @@ import azure.durable_functions as df
 import logging
 from datetime import datetime, timedelta
 from services.BlobService import BlobService
+from controllers.SessionController import SessionController
 from PIL import Image
 from io import BytesIO
 
@@ -82,6 +83,10 @@ async def main(req: func.HttpRequest, starter: str):
     # Upload the image to blob storage
     BlobService().write_blob(branded_blob_path, image_stream.read(), True)
 
+    # TODO: Remove this DB
+    handler = SessionController()
+    _ = handler.mark_video_uploaded_session(session_id)
+    
     # --------------------------------------------------------------------------------------------------------------------------------------------------------
     # --------------------------------------------------------------------------------------------------------------------------------------------------------
     # --------------------------------------------------------------------------------------------------------------------------------------------------------    
