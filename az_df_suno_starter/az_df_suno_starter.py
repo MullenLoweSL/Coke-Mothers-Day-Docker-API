@@ -35,15 +35,28 @@ async def main(req: func.HttpRequest, starter: str):
     # ------------------------------------------------------------------
     # ------------------------------------------------------------------
     # ------------------------------------------------------------------
-    # AI LYRICS    
-    if typeform.mothers_music == "Surprise me!":
-        styles = ["opera", "rap", "K-pop"]
-        style = random.choice(styles)
-    else:
-        style = typeform.mothers_music
+    # decide if E/S/T lyrics
+    if typeform.language == "en":
+        # AI LYRICS    
+        if typeform.mothers_music == "Surprise me!":
+            styles = ["opera", "rap", "K-pop"]
+            style = random.choice(styles)
+        else:
+            style = typeform.mothers_music
 
-    prompt = f"A mother's day song for my mother who's name is '{typeform.mothers_name}'. Mention her favourite food {typeform.mothers_food}, her {typeform.mothers_personality} personality and her favourite pasttime {typeform.mothers_fun}. In {style} style"
-    suno_song_id = SunoService().ai_generate(prompt)
+        prompt = f"A mother's day song for my mother who's name is '{typeform.mothers_name}'. Mention her favourite food {typeform.mothers_food}, her {typeform.mothers_personality} personality and her favourite pasttime {typeform.mothers_fun}. In {style} style"
+        suno_song_id = SunoService().ai_generate(prompt)
+    elif typeform.language == "si":
+        # assume sinhala
+        prompt = "[Verse 1]\nඇති දැඩි කරලා අප හට පණ දුන්නා\nකරුණාවෙන් අපි සැම රැකගත්තා\nකාලය ගෙවිලා අපි හැඩි දැඩ් වුවා\nනෑනේ වෙනසක් අපේ <FORM_PERSONALITY> අම්මා\n\n[Verse 2]\nඅපි කැමතිම කෑමට මුල් තැන දෙන්නා\nරස ගුණ ගලපා සැමවිට බෙලා දුන්නා\nඔබ කැමතිම කෑමත් දැන් අපි දන්නා\nකමුදෝ <FORM_FOOD> අපි එක්වීලා\n\n[Verse 3]\nහැමදේ ගැන අප හට කියලා දීලා\nටික ටික ඔබේ ජිවිතේ ගෙවිලා ගිහිල්ලා\nකරමුද කැමතිම දේ සමගින් අම්මා\n<FORM_FUN> අපි එක්වීලා"
+        prompt = prompt.replace("<FORM_PERSONALITY>", typeform.mothers_personality)
+        prompt = prompt.replace("<FORM_FOOD>", typeform.mothers_food)
+        prompt = prompt.replace("<FORM_FUN>", typeform.mothers_fun)    
+        tag = typeform.mothers_music
+        title = session_id
+        suno_song_id = SunoService().custom_generate(prompt, tag, title)
+    else:
+        pass
 
     # session_id = "abc123"
     # suno_song_id = "11260199-4693-4c53-936d-f9811e109312"

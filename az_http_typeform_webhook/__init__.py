@@ -18,7 +18,16 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     logging.info('Python HTTP trigger function processed a request.')
     
     req_body = req.get_json()
-
+    typeform_id = req_body["form_response"]["form_id"]
+    if typeform_id == "oV7MdGlt":
+        language = "en"
+    elif typeform_id == "CLqDRGST":
+        language = "si"
+    elif typeform_id == "EdPYTm6s":
+        language = "ta"
+    else:
+        language = "en"
+    
     session_id = req_body["form_response"]["hidden"]["session_id"]
     mothers_name = req_body["form_response"]["answers"][0]["text"]
     mothers_food = req_body["form_response"]["answers"][1]["choice"]["label"]
@@ -27,6 +36,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
 
     typeform_args = {
         "session_id": session_id,
+        "language": language,
         "mothers_name": mothers_name,
         "mothers_food": mothers_food,
         "mothers_lifestyle": mothers_lifestyle,
