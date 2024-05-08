@@ -2,7 +2,7 @@ import os
 from typing import Tuple
 from repositories import SessionRepo
 from utils import RequestUtils
-from models import SessionModel
+from models import SessionModel, TypeformModel
 
 class SessionController:
 
@@ -17,6 +17,16 @@ class SessionController:
             "id": result.id
         })
     
+    @RequestUtils.api_response
+    def save_typeform_results(self, session_id: str, typeform: TypeformModel) -> Tuple[int, dict]:
+        session: SessionModel = self.session_repo.retrieve(session_id)
+        session.typeform_response = typeform
+        model: SessionController = self.session_repo.update(session)
+        if model == None: return (404, {'error': 'Could not update session'})
+        return (200, {
+            "result": session.to_dto()
+        })
+
     @RequestUtils.api_response
     def patch_session(self, session_id: str, data: str, payload: dict) -> Tuple[int, dict]:
         session: SessionModel = self.session_repo.retrieve(session_id)
