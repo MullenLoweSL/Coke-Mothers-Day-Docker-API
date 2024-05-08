@@ -1,7 +1,7 @@
 import json
 import azure.durable_functions as df
 from datetime import datetime, timedelta
-from services.BlobService import BlobService
+from controllers.SessionController import SessionController
 
 def orchestrator_function(context: df.DurableOrchestrationContext):
     job = context.get_input()
@@ -16,6 +16,11 @@ def orchestrator_function(context: df.DurableOrchestrationContext):
             print("Calling activity: az_df_upload_activity")
             args = json.dumps({'session_id': session_id, 'song_url': song_url})
             result = yield context.call_activity('az_df_upload_activity', args)
+            print(result)
+
+            # TODO: Update DB
+            handler = SessionController()
+            result = handler.mark_song_uploaded_session(session_id)
             print(result)
             break
 

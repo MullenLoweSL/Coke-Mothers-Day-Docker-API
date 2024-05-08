@@ -45,9 +45,23 @@ class SessionController:
                 "error": f"Unknown data requested for PATCH: {data}"
             })  
 
-        model: SessionController = self.session_repo.update(session)
+        model: SessionModel = self.session_repo.update(session)
         if model == None: return (404, {'error': 'Could not update session'})
 
         return (200, {
             "result": session.to_dto()
         })
+    
+    def mark_song_uploaded_session(self, session_id: str) -> bool:
+        session: SessionModel = self.session_repo.retrieve(session_id)
+        session.song_uploaded = True
+        model: SessionModel = self.session_repo.update(session)
+        if model == None: return False
+        return True
+
+    def mark_video_uploaded_session(self, session_id: str) -> bool:
+        session: SessionModel = self.session_repo.retrieve(session_id)
+        session.video_uploaded = True
+        model: SessionModel = self.session_repo.update(session)
+        if model == None: return False
+        return True
