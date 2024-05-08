@@ -3,3 +3,4 @@ requests
 azure-cosmos==4.2.0
 azure-functions-durable==1.1.6
 azure-storage-blob==12.9.0
+Pillow==9.0.0

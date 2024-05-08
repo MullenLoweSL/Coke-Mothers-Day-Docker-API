@@ -9,15 +9,6 @@ def orchestrator_function(context: df.DurableOrchestrationContext):
     polling_interval = job["pollingInterval"]
     expiry_time = datetime.fromisoformat(job["expiryTime"]).replace(tzinfo=None)
 
-    # Poll Cosmos DB until attribute changes to True
-    while context.current_utc_datetime.replace(tzinfo=None) < expiry_time:
-        attribute_status = yield context.call_activity("az_df_check_cosmosdb_status", {"session_id": session_id})
-        if attribute_status == True:
-            break
-
-        next_check = context.current_utc_datetime.replace(tzinfo=None) + timedelta(seconds=polling_interval)
-        yield context.create_timer(next_check)
-
     # Start the ffmpeg job
     _ = yield context.call_activity("az_df_ffmpeg_start", {"session_id": session_id})
 
