@@ -3,8 +3,7 @@ import azure.durable_functions as df
 import logging
 from datetime import datetime, timedelta
 from models.TypeformModel import TypeformModel
-from ..services.SunoService import SunoService
-# from services.SunoService import SunoService
+from services.SunoService import SunoService
 from services.TypeformService import TypeformService
 from controllers.SessionController import SessionController
 
