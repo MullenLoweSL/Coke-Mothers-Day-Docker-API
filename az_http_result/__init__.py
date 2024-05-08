@@ -17,6 +17,6 @@ def main(req: func.HttpRequest, context: func.Context) -> func.HttpResponse:
             "audio_url":"https://mullenlowedemo.blob.core.windows.net/coke-mothers-day/test/song.mp3?sp=r&st=2024-04-30T15:13:38Z&se=2024-08-27T23:13:38Z&sv=2022-11-02&sr=b&sig=k4aquYkICPMmu8M0ZDgBipv2fS5xvRVCuSqmARm18H8%3D",
             "title":"DUMMY TITLE",
             "description":"DUMMY DESCRIPTION",
-            "share_url": "www.google.com"
+            "share_url": "https://ai-mothers-day-webapp.vercel.app/share/7213554e-2707-487d-b071-4a07474e5744"
         }
     return func.HttpResponse(json.dumps({"result": result}), status_code=200, mimetype="application/json")
