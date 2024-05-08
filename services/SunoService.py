@@ -15,7 +15,8 @@ class SunoService(metaclass=Singleton):
         payload = {
             "prompt": prompt,
             "tags": tag,
-            "title": title
+            "title": title,
+            "make_instrumental": False
         }
         response = requests.request("POST", self.custom_generate_url, headers=headers, data=json.dumps(payload))
         response_json = response.json()
