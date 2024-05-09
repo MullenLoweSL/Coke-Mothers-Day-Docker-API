@@ -6,6 +6,7 @@ import azure.durable_functions as df
 import logging
 from datetime import datetime, timedelta
 from services.BlobService import BlobService
+from services.SlackService import SlackService
 from controllers.SessionController import SessionController
 from PIL import Image
 from io import BytesIO
@@ -39,6 +40,7 @@ async def main(req: func.HttpRequest, starter: str):
 
     # TODO: Move this to separate file
     # - uploads the image, to the container with folder name = session_id as "image.png"
+    SlackService().post_to_slack_webhook(f"Upload: Image collage to blob storage")
     filebytes = req.files['file'].read()
     blob_path = session_id + "/" + "image.png"
     BlobService().write_blob(blob_path, filebytes, True)

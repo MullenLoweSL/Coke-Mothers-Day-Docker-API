@@ -6,6 +6,7 @@ from datetime import datetime, timedelta
 from models.TypeformModel import TypeformModel
 from services.SunoService import SunoService
 from services.TypeformService import TypeformService
+from services.SlackService import SlackService
 from controllers.SessionController import SessionController
 
 handler = SessionController()
@@ -45,6 +46,7 @@ async def main(req: func.HttpRequest, starter: str):
             style = typeform.mothers_music
 
         prompt = f"A mother's day song for my mother who's name is '{typeform.mothers_name}'. Mention her favourite food {typeform.mothers_food}, her {typeform.mothers_personality} personality and her favourite pasttime {typeform.mothers_fun}. In {style} style"
+        SlackService().post_to_slack_webhook(f"Typeform: Added en song to queue")
         suno_song_id = SunoService().ai_generate(prompt)
     elif typeform.language == "si":
         # assume sinhala
@@ -55,6 +57,7 @@ async def main(req: func.HttpRequest, starter: str):
         tag = typeform.mothers_music
         title = session_id
         suno_song_id = SunoService().custom_generate(prompt, tag, title)
+        SlackService().post_to_slack_webhook(f"Typeform: Added si song to queue")
     else:
         pass
 
