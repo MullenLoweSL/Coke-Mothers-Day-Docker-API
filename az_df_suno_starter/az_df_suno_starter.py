@@ -50,10 +50,7 @@ async def main(req: func.HttpRequest, starter: str):
         suno_song_id = SunoService().ai_generate(prompt)
     elif typeform.language == "si":
         # assume sinhala
-        prompt = "[Verse 1]\nඇති දැඩි කරලා අප හට පණ දුන්නා\nකරුණාවෙන් අපි සැම රැකගත්තා\nකාලය ගෙවිලා අපි හැඩි දැඩ් වුවා\nනෑනේ වෙනසක් අපේ <FORM_PERSONALITY> අම්මා\n\n[Verse 2]\nඅපි කැමතිම කෑමට මුල් තැන දෙන්නා\nරස ගුණ ගලපා සැමවිට බෙලා දුන්නා\nඔබ කැමතිම කෑමත් දැන් අපි දන්නා\nකමුදෝ <FORM_FOOD> අපි එක්වීලා\n\n[Verse 3]\nහැමදේ ගැන අප හට කියලා දීලා\nටික ටික ඔබේ ජිවිතේ ගෙවිලා ගිහිල්ලා\nකරමුද කැමතිම දේ සමගින් අම්මා\n<FORM_FUN> අපි එක්වීලා"
-        prompt = prompt.replace("<FORM_PERSONALITY>", typeform.mothers_personality)
-        prompt = prompt.replace("<FORM_FOOD>", typeform.mothers_food)
-        prompt = prompt.replace("<FORM_FUN>", typeform.mothers_fun)    
+        prompt = f"[Intro]\nආදරනීය {typeform.mothers_name}\n\n[Verse 1]\nඇති දැඩි කරලා අප හට පණ දුන්නා\nකරුණාවෙන් අපි සැම රැකගත්තා\nකාලය ගෙවිලා අපි හැඩි දැඩි වුවා\nනෑනේ වෙනසක් අපේ {typeform.mothers_personality} අම්මා\n\n[Verse 2]\nඅපි කැමතිම කෑමට මුල් තැන දෙන්නා\nරස ගුණ ගලපා සැමවිට බෙලා දුන්නා\nඔබ කැමතිම කෑමත් දැන් අපි දන්නා\nකමුදෝ {typeform.mothers_food} අපි එක්වීලා\n\n[Verse 3]\nහැමදේ ගැන අප හට කියලා දීලා\nටික ටික ඔබේ ජිවිතේ ගෙවිලා ගිහිල්ලා\nකරමුද කැමතිම දේ සමගින් අම්මා\n{typeform.mothers_fun} අපි එක්වීලා"
         tag = typeform.mothers_music
         title = session_id
         suno_song_id = SunoService().custom_generate(prompt, tag, title)
