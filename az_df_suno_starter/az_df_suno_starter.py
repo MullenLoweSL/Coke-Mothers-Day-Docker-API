@@ -56,7 +56,12 @@ async def main(req: func.HttpRequest, starter: str):
         suno_song_id = SunoService().custom_generate(prompt, tag, title)
         SlackService().post_to_slack_webhook(f"Typeform: Added si song to queue")
     else:
-        pass
+        # assume sinhala
+        prompt = f"[Intro]\nஅன்பான {typeform.mothers_name}\n\n[Verse 1]\nஉயிர் தந்தாள்\nஉதிரம் தந்தாள்\nகருவறையில்\nஇடம் தந்தாள்\nஅம்மா அம்மா\nஎன் {typeform.mothers_personality} அம்மா\n\n[Verse 2]\nஒருவாய் ஊட்ட\nஓடோடி வருவாள்\nபிடித்ததெல்லாம்\nரசித்து செய்வாள்\n{typeform.mothers_food}\nஅவளுக்கு பிடிக்கும்\nஅவள் கைப்பக்குவம்\nஎனக்கும் பிடிக்கும்\n\n[Verse 3]\nவாழ்க்கையை வாழ\nசொல்லி தந்தாள்\nஅனுபவத்தால்\nகற்றுத் தந்தாள்\n{typeform.mothers_fun}\nஅவள் பொழுதுபோக்கு\nஎனக்கும் அதுவே\nபொழுதுபோக்கு"
+        tag = typeform.mothers_music
+        title = session_id
+        suno_song_id = SunoService().custom_generate(prompt, tag, title)
+        SlackService().post_to_slack_webhook(f"Typeform: Added ta song to queue")
 
     # session_id = "abc123"
     # suno_song_id = "11260199-4693-4c53-936d-f9811e109312"
