@@ -40,7 +40,7 @@ async def main(req: func.HttpRequest, starter: str):
     if typeform.language == "en":
         # AI LYRICS    
         if typeform.mothers_music == "Surprise me!":
-            styles = ["opera", "rap", "K-pop"]
+            styles = ["opera", "rap", "K-pop", "romantic samba", "uplifting rap", "futuristic anime", "melodic soul", "smooth house"]
             style = random.choice(styles)
         else:
             style = typeform.mothers_music
