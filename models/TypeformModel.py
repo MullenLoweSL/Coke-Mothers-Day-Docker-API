@@ -23,7 +23,7 @@ class TypeformModel(BaseModel):
     
     def get_render_string(self):
         # return a string with all info in the object
-        return f"Language: {self.language or ''}, Mother's Name: {self.mothers_name or ''}, Mother's Food: {self.mothers_food or ''}, Mother's Personality: {self.mothers_personality or ''}, Mother's Fun: {self.mothers_fun or ''}, Mother's Music: {self.mothers_music or ''}"
+        return f"Language: *{self.language or ''}*. Mother's name: *{self.mothers_name or ''}*, food: *{self.mothers_food or ''}*, personality: *{self.mothers_personality or ''}*, hobby: *{self.mothers_fun or ''}*, music: *{self.mothers_music or ''}*"
 
     def to_dto(self):
         # return the object as a dictionary

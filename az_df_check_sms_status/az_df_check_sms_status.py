@@ -31,7 +31,7 @@ def az_df_check_sms_status(job):
             # successfully sent, mark as sent
             session.sms_sent = True
             _ = session_repo.update(session)
-            SlackService().post_to_slack_webhook(f"SMS: Sent to user: {session.typeform_response.get_render_string()} with song URL: {text}")
+            SlackService().post_to_slack_webhook(f"SMS: Sent to user: {session.typeform_response.get_render_string()} with text: {text}")
 
         # Check the status attribute
         if session.sms_sent:
