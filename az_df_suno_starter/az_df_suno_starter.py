@@ -48,7 +48,6 @@ async def main(req: func.HttpRequest, starter: str):
     # decide if E/S/T lyrics
     if typeform.language == "en":
         # AI LYRICS    
-
         prompt = f"A mother's day song for my mother who's name is '{typeform.mothers_name}'. Mention her favourite food {typeform.mothers_food}, her {typeform.mothers_personality} personality and her favourite pasttime {typeform.mothers_fun}. In {style} style"
         SlackService().post_to_slack_webhook(f"Typeform: Added en song to queue (Session ID: {session_id})")
         suno_song_id = SunoService().ai_generate(prompt)
@@ -60,8 +59,8 @@ async def main(req: func.HttpRequest, starter: str):
         suno_song_id = SunoService().custom_generate(prompt, tag, title)
         SlackService().post_to_slack_webhook(f"Typeform: Added si song to queue (Session ID: {session_id})")
     else:
-        # assume sinhala
-        prompt = f"[Intro]\nஅன்பான {typeform.mothers_name}\n\n[Verse 1]\nஉயிர் தந்தாள்\nஉதிரம் தந்தாள்\nகருவறையில்\nஇடம் தந்தாள்\nஅம்மா அம்மா\nஎன் {typeform.mothers_personality} அம்மா\n\n[Verse 2]\nஒருவாய் ஊட்ட\nஓடோடி வருவாள்\nபிடித்ததெல்லாம்\nரசித்து செய்வாள்\n{typeform.mothers_food}\nஅவளுக்கு பிடிக்கும்\nஅவள் கைப்பக்குவம்\nஎனக்கும் பிடிக்கும்\n\n[Verse 3]\nவாழ்க்கையை வாழ\nசொல்லி தந்தாள்\nஅனுபவத்தால்\nகற்றுத் தந்தாள்\n{typeform.mothers_fun}\nஅவள் பொழுதுபோக்கு\nஎனக்கும் அதுவே\nபொழுதுபோக்கு"
+        # tamil
+        prompt = f"[Intro]\nஅன்பான {typeform.mothers_name}\n\n[Verse 1]\nஉயிர் தந்தாள்\n உதிரம் தந்தாள்\n கருவறையில்\n\nஇடம் தந்தாள்\nஎன் {typeform.mothers_personality}  அம்மா\n அன்பு\n அம்மா\n\n[Verse 2]\nஎனக்கு பிடித்ததெல்லாம்  \nரசித்து ருசித்து செய்வாள்\nகைப்பக்குவத்தால் \nஅறுசுவை ஊட்டுவாள் \n{typeform.mothers_food}\nஅவளுக்கு பிடிக்கும் \nஅவளுக்கு பிடித்ததெல்லாம்\nஎனக்கும் பிடிக்கும்\n\n[Verse 3]\nவாழ்க்கையை வாழ\nவழிகள் சொல்லி தந்தாள்\nஅனுபவத்தால்\n\nகற்றுத் தந்தாள்\n n{typeform.mothers_fun} \n அவளுக்கு பிடிக்கும்\nஅவளுக்கு பிடித்ததெல்லாம் \nஎனக்கும் பிடிக்கும்\n\nஉயிர் தந்தாள்\nஉதிரம் தந்தாள்\nகருவறையில்\nஇடம் தந்தாள்\nஎன் {typeform.mothers_personality} அம்மா\nஅன்பு\nஅம்மா"
         tag = style
         title = session_id
         suno_song_id = SunoService().custom_generate(prompt, tag, title)
