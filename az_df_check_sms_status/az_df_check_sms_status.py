@@ -8,6 +8,10 @@ from services.SlackService import SlackService
 session_repo = SessionRepo()
 
 def az_df_check_sms_status(job):
+    # don't send SMS if the environment variable is not set
+    if not os.environ["SEND_SMS"].lower() == 'true':
+        return "Completed"
+
     session_id = job["session_id"]
 
     # Check the status of the ffmpeg job (Mock)
