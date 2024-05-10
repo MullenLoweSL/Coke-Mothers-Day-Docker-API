@@ -8,7 +8,7 @@
       "name": "req",
       "route": "session/{session_id?}",
       "methods": [
-        "post", "patch"
+        "post", "patch", "get"
       ]
     },
     {

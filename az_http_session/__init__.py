@@ -34,6 +34,8 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
             template = "An exception of type {0} occurred. Arguments:\n{1!r}"
             message = template.format(type(e).__name__, e.args)
             return func.HttpResponse(json.dumps({"error": message}), status_code=400)
+    elif req.method == "GET":
+        return func.HttpResponse(handler.get_summary(), status_code=200, mimetype='text/html')
     elif req.method == "PATCH":
         data: str = req.params.get("data")
         session_id: str = req.route_params.get('session_id')

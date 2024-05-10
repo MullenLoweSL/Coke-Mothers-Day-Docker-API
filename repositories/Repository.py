@@ -2,7 +2,7 @@ from typing import Generic, TypeVar
 import os
 from azure.cosmos import CosmosClient, exceptions
 from abc import ABC, abstractmethod
-
+from collections import Counter
 from models.BaseModel import BaseModel
 
 T = TypeVar("T", bound=BaseModel)
@@ -83,6 +83,43 @@ class Repository(ABC, Generic[T]):
             enable_cross_partition_query=True
         ))
         return results[0]
+    
+    def count_generated_songs(self) -> int:
+        results = list(self.container.query_items(query="SELECT VALUE COUNT(1) FROM r WHERE r.song_created=true",
+            enable_cross_partition_query=True
+        ))
+        return results[0]
+    
+    def count_sent_sms(self) -> int:
+        results = list(self.container.query_items(query="SELECT VALUE COUNT(1) FROM r WHERE r.sms_sent=true",
+            enable_cross_partition_query=True
+        ))
+        return results[0]
+
+    def calculate_language_breakdown(self) -> dict:
+        # Get all languages
+        query = "SELECT r.language FROM r"
+        results = list(self.container.query_items(query=query, enable_cross_partition_query=True))
+
+        # Count the occurrences of each language
+        languages = [item['language'] for item in results if item['language'] is not None]
+        counts = Counter(languages)
+
+        return dict(counts)
+    
+    def count_repeat_phone_numbers(self) -> int:
+        # Get all phone numbers
+        query = "SELECT r.phone_number FROM r"
+        results = list(self.container.query_items(query=query, enable_cross_partition_query=True))
+
+        # Count the occurrences of each phone number
+        phone_numbers = [item['phone_number'] for item in results]
+        counts = Counter(phone_numbers)
+
+        # Count the number of phone numbers that appear more than once
+        repeat_phone_numbers = sum(1 for count in counts.values() if count > 1)
+
+        return repeat_phone_numbers
 
     def query_maker(self, id):
         perform_query = True

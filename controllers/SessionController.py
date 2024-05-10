@@ -1,3 +1,4 @@
+import json
 import os
 from typing import Tuple
 from repositories import SessionRepo
@@ -36,7 +37,69 @@ class SessionController:
         return (200, {
             "result": session.to_dto()
         })
+    
+    def get_summary(self) -> Tuple[int, str]:
+        results = {
+            'total_items': self.session_repo.count_items(),
+            'generated_songs': self.session_repo.count_generated_songs(),
+            'sent_sms': self.session_repo.count_sent_sms(),
+            'repeat_phone_numbers': self.session_repo.count_repeat_phone_numbers(),
+            'language_breakdown': self.session_repo.calculate_language_breakdown()
+        }
 
+        # Convert the dictionary to a JSON string
+        results_str = json.dumps(results, indent=4)
+
+        # Replace the characters {, }, " and , with HTML tags
+        results_str = results_str.replace("{", "<pre>{").replace("}", "}</pre>").replace("\"", "").replace(",\n", ",<br>")
+
+        # Add CSS to invert the color scheme, make the text larger, and make the entire screen black
+        results_str = f"""
+        <html>
+        <head>
+            <style>
+                body {{
+                    color: white;
+                    background-color: black;
+                    font-size: 1.5em;
+                }}
+                pre {{
+                    white-space: pre-wrap;       /* css-3 */
+                    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+                    white-space: -pre-wrap;      /* Opera 4-6 */
+                    white-space: -o-pre-wrap;    /* Opera 7 */
+                    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+                }}
+                @media screen and (max-width: 600px) {{
+                    body {{
+                        font-size: 3em;  // Increased font size for mobile devices
+                    }}
+                }}
+            </style>
+        </head>
+        <body>
+            {results_str}
+        </body>
+        </html>
+        """
+
+        return results_str
+        
+
+    # @RequestUtils.api_response
+    # def get_summary(self) -> Tuple[int, dict]:
+    #     results = {
+    #         'total_items': self.session_repo.count_items(),
+    #         'generated_songs': self.session_repo.count_generated_songs(),
+    #         'sent_sms': self.session_repo.count_sent_sms(),
+    #         'repeat_phone_numbers': self.session_repo.count_repeat_phone_numbers(),
+    #         'language_breakdown': self.session_repo.calculate_language_breakdown()
+    #     }
+
+    #     return (200, {
+    #         "data": results,
+    #     })
+    
     @RequestUtils.api_response
     def patch_session(self, session_id: str, data: str, payload: dict) -> Tuple[int, dict]:
         session: SessionModel = self.session_repo.retrieve(session_id)
