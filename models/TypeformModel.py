@@ -21,6 +21,10 @@ class TypeformModel(BaseModel):
         self.mothers_fun = kwargs.get('mothers_fun', None)
         self.mothers_music = kwargs.get('mothers_music', None)
     
+    def get_render_string(self):
+        # return a string with all info in the object
+        return f"Language: {self.language or ''}, Mother's Name: {self.mothers_name or ''}, Mother's Food: {self.mothers_food or ''}, Mother's Personality: {self.mothers_personality or ''}, Mother's Fun: {self.mothers_fun or ''}, Mother's Music: {self.mothers_music or ''}"
+
     def to_dto(self):
         # return the object as a dictionary
         return {

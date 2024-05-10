@@ -22,7 +22,7 @@ async def main(req: func.HttpRequest, starter: str):
     - uploads the image, to the container with folder name = session_id as "image.png"
     - overlays the Coke branding as "image_branded.png"
     - generates and uploads the MP4 file as "video.mp4" and
-    - update cosmos DB with video_uploaded = True
+    - update cosmos DB with image_uploaded = True
     """
     
     client = df.DurableOrchestrationClient(starter)
@@ -85,17 +85,17 @@ async def main(req: func.HttpRequest, starter: str):
     # Upload the image to blob storage
     BlobService().write_blob(branded_blob_path, image_stream.read(), True)
 
-    # TODO: Remove this DB
+    # mark this session as image uploaded
     handler = SessionController()
-    _ = handler.mark_video_uploaded_session(session_id)
+    _ = handler.mark_image_uploaded(session_id)
     
     # --------------------------------------------------------------------------------------------------------------------------------------------------------
     # --------------------------------------------------------------------------------------------------------------------------------------------------------
     # --------------------------------------------------------------------------------------------------------------------------------------------------------    
 
     # Define the polling interval and expiry time
-    polling_interval = 3  # seconds
-    expiry_time = (datetime.utcnow() + timedelta(minutes=5)).isoformat()
+    polling_interval = 20  # seconds
+    expiry_time = (datetime.utcnow() + timedelta(minutes=1)).isoformat()
 
     # Start the ffmpeg orchestrator
     job = {
@@ -103,7 +103,7 @@ async def main(req: func.HttpRequest, starter: str):
         "pollingInterval": polling_interval,
         "expiryTime": expiry_time
     }
-    instance_id = await client.start_new('az_df_ffmpeg_orchestrator', f"ffmpeg-{session_id}", job)
+    instance_id = await client.start_new('az_df_sms_orchestrator', f"sms-{session_id}", job)
 
-    logging.info(f"Started ffmpeg orchestration with ID = '{instance_id}'")
-    return func.HttpResponse(f"ffmpeg orchestration started with instance ID: {instance_id}", status_code=200)
+    logging.info(f"Started SMS orchestration with ID = '{instance_id}'")
+    return func.HttpResponse(f"SMS orchestration started with instance ID: {instance_id}", status_code=200)

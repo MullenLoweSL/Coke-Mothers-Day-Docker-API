@@ -9,18 +9,13 @@ def orchestrator_function(context: df.DurableOrchestrationContext):
     polling_interval = job["pollingInterval"]
     expiry_time = datetime.fromisoformat(job["expiryTime"]).replace(tzinfo=None)
 
-    # Start the ffmpeg job
-    _ = yield context.call_activity("az_df_ffmpeg_start", {"session_id": session_id})
-
+    # now that the photo has been uploaded, send the SMS
     while context.current_utc_datetime.replace(tzinfo=None) < expiry_time:
-        job_status = yield context.call_activity("az_df_ffmpeg_check_status", {"session_id": session_id})
+        job_status = yield context.call_activity("az_df_check_sms_status", {"session_id": session_id})
         if job_status == "Completed":
-            print("az_df_ffmpeg_check_status: Completed")
-            yield context.call_activity("az_df_ffmpeg_update_status", {"session_id": session_id})
-            yield context.call_activity("az_df_ffmpeg_send_alert", {"session_id": session_id})
             break
         
-        print("az_df_ffmpeg_check_status: InProgress")
+        print("az_df_check_sms_status: InProgress")
         next_check = context.current_utc_datetime.replace(tzinfo=None) + timedelta(seconds=polling_interval)
         yield context.create_timer(next_check)
 

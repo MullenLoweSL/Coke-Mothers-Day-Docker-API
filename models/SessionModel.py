@@ -12,8 +12,10 @@ class SessionModel(BaseModel):
     first_name: str = None
     last_name: str = None
     phone_number: str = None
-    song_uploaded: bool = False
-    video_uploaded: bool = False
+    song_created: bool = False
+    suno_song_id: str = None
+    image_uploaded: bool = False
+    sms_sent: bool = False
     typeform_response: TypeformModel = None
 
     def __init__(self, **kwargs):
@@ -23,8 +25,10 @@ class SessionModel(BaseModel):
         self.first_name = kwargs.get('first_name', None)
         self.last_name = kwargs.get('last_name', None)
         self.phone_number = kwargs.get('phone_number', None)
-        self.song_uploaded = kwargs.get('song_uploaded', False)
-        self.video_uploaded = kwargs.get('video_uploaded', False)
+        self.song_created = kwargs.get('song_created', False)
+        self.suno_song_id = kwargs.get('suno_song_id', False)
+        self.image_uploaded = kwargs.get('image_uploaded', False)
+        self.sms_sent = kwargs.get('sms_sent', False)
         if kwargs.get('typeform_response'):
             self.typeform_response = TypeformModel(**kwargs.get('typeform_response'))
         else:
@@ -39,7 +43,9 @@ class SessionModel(BaseModel):
             "first_name": self.first_name,
             "last_name": self.last_name,
             "phone_number": self.phone_number,
-            "song_uploaded": self.song_uploaded,
-            "video_uploaded": self.video_uploaded,
+            "song_created": self.song_created,
+            "suno_song_id": self.suno_song_id,
+            "image_uploaded": self.image_uploaded,
+            "sms_sent": self.sms_sent,
             "typeform_response": self.typeform_response.to_dto() if self.typeform_response else None
         }
