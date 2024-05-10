@@ -38,7 +38,7 @@ async def main(req: func.HttpRequest, starter: str):
     # ------------------------------------------------------------------
 
     if typeform.mothers_music == "Surprise me!":
-        styles = ["opera", "rap", "K-pop", "romantic samba", "uplifting rap", "futuristic anime", "melodic soul", "smooth house"]
+        styles = ["rock", "opera", "rap", "K-pop", "romantic samba", "uplifting rap", "futuristic anime", "melodic soul", "smooth house"]
         style = random.choice(styles)
     elif typeform.mothers_music == "Pop":
         style = "Happy pop"

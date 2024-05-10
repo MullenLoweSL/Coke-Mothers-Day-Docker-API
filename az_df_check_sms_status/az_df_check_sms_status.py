@@ -17,9 +17,9 @@ def az_df_check_sms_status(job):
     text = ""
     share_url = os.environ["WEBAPP_SHARE_URL"]
     if session.language == "si":
-        text = f"SI - Your Coke mother's day song is ready! Listen to it here: {share_url + session_id}"
+        text = f"ඔබේ Coke Mother's Day ගීතය සූදානම්! එය මෙතැනින් සවන් දෙන්න: {share_url + session_id}"
     elif session.language == "ta":
-        text = f"TA - Your Coke mother's day song is ready! Listen to it here: {share_url + session_id}"
+        text = f"உங்கள் Coke அன்னையர் தினப் பாடலை இங்கே கேட்டு மகிழவும்: {share_url + session_id}"
     else:
         text = f"Your Coke mother's day song is ready! Listen to it here: {share_url + session_id}"
 
