@@ -12,7 +12,7 @@ def orchestrator_function(context: df.DurableOrchestrationContext):
     expiry_time = datetime.fromisoformat(job["expiryTime"]).replace(tzinfo=None)
 
     while context.current_utc_datetime.replace(tzinfo=None) < expiry_time:
-        job_status, song_url = yield context.call_activity("az_df_suno_activity", {"suno_song_id": suno_song_id})
+        job_status, song_url, duration = yield context.call_activity("az_df_suno_activity", {"suno_song_id": suno_song_id})
         if job_status == "Completed":
             # TODO: DELETE THIS UNUSED "az_df_upload_activity"
             # print("Calling activity: az_df_upload_activity")
@@ -22,7 +22,7 @@ def orchestrator_function(context: df.DurableOrchestrationContext):
 
             # TODO: Update DB
             handler = SessionController()
-            result = handler.mark_song_song_created(session_id, suno_song_id)
+            result = handler.mark_song_song_created(session_id, suno_song_id, duration)
             SlackService().post_to_slack_webhook(f"Suno: song generation completed (Session ID: {session_id})")
             print(f"Suno: song generation completed (Session ID: {session_id})")
             break

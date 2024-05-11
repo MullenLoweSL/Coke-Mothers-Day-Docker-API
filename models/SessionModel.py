@@ -13,6 +13,7 @@ class SessionModel(BaseModel):
     last_name: str = None
     phone_number: str = None
     song_created: bool = False
+    song_duration: float = None
     suno_song_id: str = None
     image_uploaded: bool = False
     sms_sent: bool = False
@@ -26,6 +27,7 @@ class SessionModel(BaseModel):
         self.last_name = kwargs.get('last_name', None)
         self.phone_number = kwargs.get('phone_number', None)
         self.song_created = kwargs.get('song_created', False)
+        self.song_duration = kwargs.get('song_duration', None)
         self.suno_song_id = kwargs.get('suno_song_id', False)
         self.image_uploaded = kwargs.get('image_uploaded', False)
         self.sms_sent = kwargs.get('sms_sent', False)
@@ -44,6 +46,7 @@ class SessionModel(BaseModel):
             "last_name": self.last_name,
             "phone_number": self.phone_number,
             "song_created": self.song_created,
+            "song_duration": self.song_duration,
             "suno_song_id": self.suno_song_id,
             "image_uploaded": self.image_uploaded,
             "sms_sent": self.sms_sent,

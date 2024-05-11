@@ -136,16 +136,20 @@ class SessionController:
     
     def is_session_completed(self, session_id: str) -> bool:
         session: SessionModel = self.session_repo.retrieve(session_id)
-        return session.song_created and session.image_uploaded
+        if session.song_created and session.image_uploaded:
+            return True, session.song_duration
+        else:
+            return False, None
     
     def get_suno_song_id(self, session_id: str) -> str:
         session: SessionModel = self.session_repo.retrieve(session_id)
         return session.suno_song_id
     
-    def mark_song_song_created(self, session_id: str, suno_song_id: str) -> bool:
+    def mark_song_song_created(self, session_id: str, suno_song_id: str, duration: float) -> bool:
         session: SessionModel = self.session_repo.retrieve(session_id)
         session.song_created = True
         session.suno_song_id = suno_song_id
+        session.song_duration = duration
         model: SessionModel = self.session_repo.update(session)
         if model == None: return False
         return True
