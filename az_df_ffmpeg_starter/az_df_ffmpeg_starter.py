@@ -10,6 +10,16 @@ from services.SlackService import SlackService
 from controllers.SessionController import SessionController
 from PIL import Image
 from io import BytesIO
+import asyncio
+
+async def monitor_status(client, instance_id):
+    while True:
+        status = await client.get_status(instance_id)
+        if status.runtime_status in [df.OrchestrationRuntimeStatus.Completed, df.OrchestrationRuntimeStatus.Failed]:
+            if status.runtime_status == df.OrchestrationRuntimeStatus.Failed:
+                logging.error(f"Orchestration with ID = '{instance_id}' failed")
+            break
+        await asyncio.sleep(40)  # wait for 40 seconds before checking the status again
 
 def get_path_for_temporary_file():
     filepath = tempfile.NamedTemporaryFile().name
@@ -94,7 +104,7 @@ async def main(req: func.HttpRequest, starter: str):
     # --------------------------------------------------------------------------------------------------------------------------------------------------------    
 
     # Define the polling interval and expiry time
-    polling_interval = 20  # seconds
+    polling_interval = 15  # seconds
     expiry_time = (datetime.utcnow() + timedelta(minutes=1)).isoformat()
 
     # Start the ffmpeg orchestrator
@@ -106,4 +116,8 @@ async def main(req: func.HttpRequest, starter: str):
     instance_id = await client.start_new('az_df_sms_orchestrator', f"sms-{session_id}", job)
 
     logging.info(f"Started SMS orchestration with ID = '{instance_id}'")
+
+    # Start monitoring the status of the orchestration
+    asyncio.create_task(monitor_status(client, instance_id))
+
     return func.HttpResponse(f"SMS orchestration started with instance ID: {instance_id}", status_code=200)

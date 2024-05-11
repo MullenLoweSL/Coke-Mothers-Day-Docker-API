@@ -8,6 +8,16 @@ from services.SunoService import SunoService
 from services.TypeformService import TypeformService
 from services.SlackService import SlackService
 from controllers.SessionController import SessionController
+import asyncio
+
+async def monitor_status(client, instance_id):
+    while True:
+        status = await client.get_status(instance_id)
+        if status.runtime_status in [df.OrchestrationRuntimeStatus.Completed, df.OrchestrationRuntimeStatus.Failed]:
+            if status.runtime_status == df.OrchestrationRuntimeStatus.Failed:
+                logging.error(f"Orchestration with ID = '{instance_id}' failed")
+            break
+        await asyncio.sleep(6)  # wait for 6 seconds before checking the status again
 
 handler = SessionController()
 
@@ -76,8 +86,8 @@ async def main(req: func.HttpRequest, starter: str):
             status_code=400
         )
 
-    polling_interval = 4  # seconds
-    expiry_time = (datetime.utcnow() + timedelta(minutes=5)).isoformat()
+    polling_interval = 5  # seconds
+    expiry_time = (datetime.utcnow() + timedelta(minutes=3)).isoformat()
 
     job = {
         "session_id": session_id,
@@ -88,4 +98,8 @@ async def main(req: func.HttpRequest, starter: str):
     instance_id = await client.start_new('az_df_suno_orchestrator', f"genai-audio-{suno_song_id}", job)
 
     logging.info(f"Started GenAI Audio orchestration with ID = '{instance_id}'")
+
+    # Start monitoring the status of the orchestration
+    asyncio.create_task(monitor_status(client, instance_id))
+
     return func.HttpResponse(f"GenAI Audio started with instance ID: {instance_id}", status_code=200)
