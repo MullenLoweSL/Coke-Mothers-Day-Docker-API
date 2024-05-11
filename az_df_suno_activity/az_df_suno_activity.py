@@ -3,17 +3,21 @@ from services.SunoService import SunoService
 from mutagen.mp3 import MP3
 import tempfile
 import requests
+import random
 
 def get_audio_duration(url):
-    try:
-        response = requests.head(url)
-        content_length = int(response.headers['Content-Length'])
-        bitrate = int(response.headers['X-Rate'])  # This header might have a different name depending on the server
-        length = content_length / (bitrate / 8)
-        return length
-    except Exception as e:
-        logging.error(f"Failed to get audio duration: {e}")
-        return 120
+    return random.uniform(115, 125)
+
+# def get_audio_duration(url):
+#     try:
+#         response = requests.head(url)
+#         content_length = int(response.headers['Content-Length'])
+#         bitrate = int(response.headers['X-Rate'])  # This header might have a different name depending on the server
+#         length = content_length / (bitrate / 8)
+#         return length
+#     except Exception as e:
+#         logging.error(f"Failed to get audio duration: {e}")
+#         return 120
     
 # def get_audio_duration(url):
 #     # Create a temporary file
@@ -49,7 +53,7 @@ def az_df_suno_activity(job):
     if song_url:
         print(f"az_df_suno_activity: Suno song URL: {song_url}")
         print(f"az_df_suno_activity: Calculating song length...")
-        duration = get_audio_duration(song_url)
+        duration = round(get_audio_duration(song_url), 1)
         print(f"az_df_suno_activity: Calculated song length as {duration}")
         return "Completed", song_url, duration
     else:
