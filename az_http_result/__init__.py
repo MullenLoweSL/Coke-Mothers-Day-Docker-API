@@ -47,7 +47,8 @@ def main(req: func.HttpRequest, context: func.Context) -> func.HttpResponse:
         # get song URL from Suno
         suno_song_id = handler.get_suno_song_id(session_id)
         song_url = SunoService().get_song_URL(suno_song_id)
-        duration = get_audio_duration(song_url)
+        # duration = get_audio_duration(song_url)
+        duration = None
         result = {
             "image_url": BlobService().get_url_from_blob_path(session_id + "/image_branded.png", expiration_minutes=5),
             "audio_url": song_url,
