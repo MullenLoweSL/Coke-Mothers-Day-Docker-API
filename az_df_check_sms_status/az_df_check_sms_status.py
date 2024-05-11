@@ -20,7 +20,7 @@ def az_df_check_sms_status(job):
     session: SessionModel = session_repo.retrieve(session_id)
     text = ""
     share_url = os.environ["WEBAPP_SHARE_URL"]
-    if session.language == "si":
+    if session.language == "sn":
         text = f"ඔබේ Coke Mother's Day ගීතය සූදානම්! එය මෙතැනින් සවන් දෙන්න: {share_url + session_id}"
     elif session.language == "ta":
         text = f"உங்கள் Coke அன்னையர் தினப் பாடலை இங்கே கேட்டு மகிழவும்: {share_url + session_id}"
