@@ -8,7 +8,8 @@ def az_df_suno_activity(job):
     logging.info(f"Checking job status for suno_song_id: {suno_song_id}")
 
     song_url = SunoService().get_song_URL(suno_song_id)
-    if song_url and "mp3" in song_url:
+    # if song_url and "mp3" in song_url:
+    if song_url:
         print(f"az_df_suno_activity: Suno song URL: {song_url}")
         job_status = True
     else:
