@@ -16,7 +16,7 @@ def get_audio_duration(url):
     # Download the file
     try:
         response = requests.get(url, stream=True)
-        for chunk in response.iter_content(chunk_size=128):
+        for chunk in response.iter_content(chunk_size=512):
             temp_file.write(chunk)
         temp_file.close()
     except Exception as e:
