@@ -18,6 +18,7 @@ async def monitor_status(client, instance_id):
         if status.runtime_status in [df.OrchestrationRuntimeStatus.Completed, df.OrchestrationRuntimeStatus.Failed]:
             if status.runtime_status == df.OrchestrationRuntimeStatus.Failed:
                 logging.error(f"Orchestration with ID = '{instance_id}' failed")
+                SlackService().post_to_slack_webhook(f"Error: SMS Orchestration with ID = '{instance_id}' failed")
             break
         await asyncio.sleep(40)  # wait for 40 seconds before checking the status again
 
